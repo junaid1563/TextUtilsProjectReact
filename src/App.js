@@ -6,8 +6,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link, Switch
-} from "react-router-dom"; import About from "./components/About";
+} from "react-router-dom";
+import About from "./components/About";
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
@@ -37,8 +37,9 @@ function App() {
       <Navbar title="TextUtils" aboutText="About TextUtils" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <Routes>
+
         <Route exact path="/about" element={<About />} />
-        <Route exact path="/" element={<TextForm heading="Enter the Text Here to Analyze" mode={mode} showAlert={showAlert} />
+        <Route exact path="/TextUtilsProjectReact" element={<TextForm heading="Enter the Text Here to Analyze" mode={mode} showAlert={showAlert} />
         } />
       </Routes>
 
