@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   aboutText: PropTypes.string.isRequired,
-  mode: PropTypes.bool
+  mode: PropTypes.string
 };
 // defaultProps
 Navbar.defaultProps = {
   title: "Set Title Here",
   aboutText: "Set About Text Here",
-  mode: 'dark'
+  mode: 'light'
 };
 function Navbar(props) {
   return (
@@ -55,7 +55,8 @@ function Navbar(props) {
               </button>
             </form> */}
             <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
-              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={props.toggleMode} />
+              <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                onClick={props.toggleMode} />
               <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
             </div>
           </div>

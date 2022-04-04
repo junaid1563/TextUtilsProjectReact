@@ -5,14 +5,17 @@ export default function TextForm(props) {
   const handleUpClick = (e) => {
     // to handle uppercase button
     setText(text.toUpperCase());
+    props.showAlert("Text is converted to Uppercase", "success");
   };
   const handleLowClick = (e) => {
     // to handle lower case button
     setText(text.toLowerCase());
+    props.showAlert("Text is converted to Lowercase", "success");
   };
   const handleClear = (e) => {
     // to handle clear button
     setText("");
+    props.showAlert("Textarea is cleared", "success");
   };
   const handleSentence = (e) => {
     // to handle sentence case button
@@ -25,6 +28,7 @@ export default function TextForm(props) {
     // to remove extra space at last
     newText = newText.slice(0, newText.length - 1);
     setText(newText);
+    props.showAlert("Text is converted to Sentencecase", "success");
   };
   const handleInverseCase = () => {
     // to handle inverse case button
@@ -36,8 +40,9 @@ export default function TextForm(props) {
       } else {
         newText += ch.toUpperCase();
       }
-      setText(newText);
     });
+    setText(newText);
+    props.showAlert("Text is converted to Inversecase", "success");
   };
   const handleOnChnage = (e) => {
     // to handle value change of textarea, new values will be added here
