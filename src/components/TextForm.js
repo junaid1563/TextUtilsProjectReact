@@ -44,15 +44,45 @@ export default function TextForm(props) {
     setText(newText);
     props.showAlert("Text is converted to Inversecase", "success");
   };
+  const handleRemoveSpaces = () => {
+    console.log(text.split(' '));
+    let newText = "";
+    text.split(" ").forEach(w => {
+      if (w !== "") {
+        newText += w + " ";
+      }
+    })
+    newText.slice(newText.length - 1);
+    setText(newText)
+    props.showAlert("Extra Spaces Removed", "success");
+
+  }
+  const handleCopy = () => {
+    let textarea = document.getElementById("#text");
+    textarea.select()
+    navigator.clipboard.writeText(textarea.value);
+    props.showAlert("Text is copied to Clipboard", "success");
+
+  }
   const handleOnChnage = (e) => {
     // to handle value change of textarea, new values will be added here
     setText(e.target.value);
   };
   const [text, setText] = useState("Enter Text Here....");
   // number of words in textarea
-  const words = text.split(" ").length;
+  let words = 0;
+  text.split(" ").forEach(t => {
+    if (t !== "" || t !== "") {
+      words += 1;
+    }
+  })
   // number of characters in textarea
-  const characters = text.length;
+  let characters = 0;
+  text.split("").forEach(ch => {
+    if (ch !== " ") {
+      characters += 1;
+    }
+  })
   // amount if time required to read words in textarea
   const time = (0.5 / 125) * words;
   return (
@@ -94,6 +124,18 @@ export default function TextForm(props) {
           onClick={handleInverseCase}
         >
           Inverse Case
+        </button>
+        <button
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          onClick={handleRemoveSpaces}
+        >
+          Remove Spaces
+        </button>
+        <button
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          onClick={handleCopy}
+        >
+          Copy Text
         </button>
 
         <button className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`} onClick={handleClear}>
