@@ -58,9 +58,7 @@ export default function TextForm(props) {
 
   }
   const handleCopy = () => {
-    let textarea = document.getElementById("#text");
-    textarea.select()
-    navigator.clipboard.writeText(textarea.value);
+    navigator.clipboard.writeText(text);
     props.showAlert("Text is copied to Clipboard", "success");
 
   }
@@ -70,19 +68,9 @@ export default function TextForm(props) {
   };
   const [text, setText] = useState("Enter Text Here....");
   // number of words in textarea
-  let words = 0;
-  text.split(" ").forEach(t => {
-    if (t !== "" || t !== "") {
-      words += 1;
-    }
-  })
+  let words = text.split(/\s+/).filter(t => t.length > 0).length
   // number of characters in textarea
-  let characters = 0;
-  text.split("").forEach(ch => {
-    if (ch !== " ") {
-      characters += 1;
-    }
-  })
+  let characters = text.split("").filter(ch => ch !== " ").length
   // amount if time required to read words in textarea
   const time = (0.5 / 125) * words;
   return (
@@ -100,45 +88,45 @@ export default function TextForm(props) {
           rows="10"
           onChange={handleOnChnage}
           style={{
-            backgroundColor: props.mode === 'dark' ? '#343a40' : 'white',
+            backgroundColor: props.mode === 'dark' ? 'rgb(11,54,98)' : 'white',
             color: props.mode === 'dark' ? 'white' : 'black'
           }}
         ></textarea>
-        <button className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`} onClick={handleUpClick}>
+        <button className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`} onClick={handleUpClick}>
           Convert to UpperCase
         </button>
         <button
-          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`}
           onClick={handleLowClick}
         >
           Convert to LowerCase
         </button>
         <button
-          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`}
           onClick={handleSentence}
         >
           Sentence Case
         </button>
         <button
-          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`}
           onClick={handleInverseCase}
         >
           Inverse Case
         </button>
         <button
-          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`}
           onClick={handleRemoveSpaces}
         >
           Remove Spaces
         </button>
         <button
-          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`}
+          className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`}
           onClick={handleCopy}
         >
           Copy Text
         </button>
 
-        <button className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-1`} onClick={handleClear}>
+        <button className={`btn btn-outline-${props.mode === 'light' ? 'primary' : 'light'} m-2`} onClick={handleClear}>
           Clear
         </button>
       </div>
